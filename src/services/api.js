@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://job-application-tracker-saas.onrender.com/api,
+  baseURL: "https://job-application-tracker-saas.onrender.com/api"
 });
 
 API.interceptors.request.use((req) => {
