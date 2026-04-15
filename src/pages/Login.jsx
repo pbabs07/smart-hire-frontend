@@ -38,7 +38,7 @@ function Login() {
         <h2>Welcome Back</h2>
         <p>Enter your details to access your account</p>
 
-     <form className="auth-form" onSubmit={handleSubmit}>
+     <form className="auth-form" onSubmit={handleSubmit} style={{ display: "flex", padding:'10px'}} >
           <input
             type="email"
             placeholder="Email Address"
