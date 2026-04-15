@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import API from "../services/api";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+
 function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -11,42 +12,45 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   console.log("Sending login request...");
+
+    console.log("LOGIN PAYLOAD:", { email, password });
+
     try {
-      const res = await API.post("/auth/login", { email, password });
+      const res = await API.post("/auth/login", {
+        email,
+        password,
+      });
+
+      console.log("LOGIN RESPONSE:", res.data);
+
       login(res.data.token);
-      navigate("/dashboard");
+      navigate("/dashboard"); // better than "/"
     } catch (err) {
+      console.log("LOGIN ERROR:", err.response?.data || err.message);
       alert(err.response?.data?.message || "Login failed");
     }
   };
 
   return (
-   <div className="auth-wrapper">
-      <div className="auth-card">
-        <h2>Welcome Back</h2>
-        <p>Enter your details to access your account</p>
+    <div className="center">
+      <h2>Login</h2>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email Address"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="btn-auth" type="submit">Sign In</button>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <div className="auth-footer">
-          Don't have an account? <Link to="/register" className="auth-link">Create one</Link>
-        </div>
-      </div>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
