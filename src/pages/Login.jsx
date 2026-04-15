@@ -24,7 +24,7 @@ function Login() {
       console.log("LOGIN RESPONSE:", res.data);
 
       login(res.data.token);
-      navigate("/dashboard"); // better than "/"
+      navigate("/"); // better than "/"
     } catch (err) {
       console.log("LOGIN ERROR:", err.response?.data || err.message);
       alert(err.response?.data?.message || "Login failed");
@@ -34,23 +34,26 @@ function Login() {
   return (
     <div className="center">
       <h2>Login</h2>
+      <div className="auth-card">
+        <h2>Welcome Back</h2>
+        <p>Enter your details to access your account</p>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button type="submit">Login</button>
-      </form>
+     <form className="auth-form" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email Address"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="btn-auth" type="submit">Sign In</button>
+        </form>
+      </div>
     </div>
   );
 }
