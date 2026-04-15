@@ -22,31 +22,22 @@ function Login() {
   };
 
   return (
-   <div className="auth-wrapper">
-      <div className="auth-card">
-        <h2>Welcome Back</h2>
-        <p>Enter your details to access your account</p>
+    <div className="center">
+      <h2>Login</h2>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email Address"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="btn-auth" type="submit">Sign In</button>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <div className="auth-footer">
-          Don't have an account? <Link to="/register" className="auth-link">Create one</Link>
-        </div>
-      </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
