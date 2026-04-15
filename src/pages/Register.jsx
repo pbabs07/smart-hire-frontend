@@ -23,21 +23,36 @@ function Register() {
   };
 
   return (
-    <div className="center">
-      <h2>Register</h2>
+    <div className="auth-wrapper">
+      <div className="auth-card">
+        <h2>Create Account</h2>
+        <p>Join SmartHire to track your job hunt</p>
 
-      <form onSubmit={handleSubmit}>
-        <input placeholder="Username"
-          onChange={(e) => setForm({ ...form, username: e.target.value })} />
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <input 
+            placeholder="Username"
+            required
+            onChange={(e) => setForm({ ...form, username: e.target.value })} 
+          />
+          <input 
+            type="email"
+            placeholder="Email Address"
+            required
+            onChange={(e) => setForm({ ...form, email: e.target.value })} 
+          />
+          <input 
+            type="password" 
+            placeholder="Password"
+            required
+            onChange={(e) => setForm({ ...form, password: e.target.value })} 
+          />
+          <button className="btn-auth" type="submit">Register</button>
+        </form>
 
-        <input placeholder="Email"
-          onChange={(e) => setForm({ ...form, email: e.target.value })} />
-
-        <input type="password" placeholder="Password"
-          onChange={(e) => setForm({ ...form, password: e.target.value })} />
-
-        <button type="submit">Register</button>
-      </form>
+        <div className="auth-footer">
+          Already have an account? <Link to="/login" className="auth-link">Log in</Link>
+        </div>
+      </div>
     </div>
   );
 }
